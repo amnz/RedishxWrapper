@@ -1,0 +1,6 @@
+-cp extern/jedis
+-cp src
+
+-D no-compilation
+-main Bootstrap
+-java java/haxe

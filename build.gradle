@@ -1,0 +1,64 @@
+apply plugin: 'java'
+defaultTasks 'clean', 'build'
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '1.12'
+}
+
+sourceCompatibility = 1.7
+archivesBaseName = 'redishx'
+version = '1.0.0'
+jar {
+	manifest {
+		attributes 'Implementation-Title': 'Redishx Wrapper', 'Implementation-Version': version
+	}
+}
+
+task callHaxe(type:Exec) {
+	commandLine 'haxe', 'build.hxml'
+}
+callHaxe.doFirst {
+	File dir = file('java/haxe/src')
+	dir.deleteDir()
+}
+
+compileJava.dependsOn callHaxe
+compileJava.doLast {
+	file('build/classes/main/_Array').deleteDir()
+	file('build/classes/main/haxe').deleteDir()
+}
+
+
+repositories {
+	mavenCentral()
+	maven {
+		url "http://maven.seasar.org/maven2/"
+	}
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir 'java/haxe/src'
+			srcDir 'java/main/src'
+		}
+
+		resources {
+			srcDir 'java/main/resources'
+		}
+	}
+
+	test {
+		java {
+			srcDir 'java/test/src'
+		}
+
+		resources {
+			srcDir 'java/test/resources'
+		}
+	}
+}
+
+dependencies {
+	compile 'redis.clients:jedis:2.6.0'
+}
