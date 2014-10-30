@@ -9,6 +9,22 @@ import java.NativeArray;
 @:native("redis.clients.jedis.Jedis")
 extern class Jedis {
 	
+	// expires
+	
+	public function persist(key:String):Null<java.lang.Long>;
+	
+	public function ttl(key:String):Null<java.lang.Long>;
+	
+	public function expire(key:String, seconds:Int):Null<java.lang.Long>;
+	
+	public function expireAt(key:String, unixTime:java.lang.Long):Null<java.lang.Long>;
+	
+	public function pttl(key:String):Null<java.lang.Long>;
+	
+	public function pexpire(key:String, milliseconds:java.lang.Long):Null<java.lang.Long>;
+	
+	public function pexpireAt(key:String, millisecondsTimestamp:java.lang.Long):Null<java.lang.Long>;
+	
 	// string
 	
 	public function get(key:String):String;

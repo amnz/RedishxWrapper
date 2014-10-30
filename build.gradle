@@ -7,7 +7,7 @@ task wrapper(type: Wrapper) {
 
 sourceCompatibility = 1.7
 archivesBaseName = 'redishx'
-version = '1.0.0'
+version = '1.0.1'
 jar {
 	manifest {
 		attributes 'Implementation-Title': 'Redishx Wrapper', 'Implementation-Version': version

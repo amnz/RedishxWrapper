@@ -8,6 +8,22 @@ package redishx;
 @:native("redishx.Redishx")
 extern interface Redishx {
 	
+	// expires
+	
+	public function persist(key:String):Float;
+	
+	public function ttl(key:String):Float;
+	
+	public function expire(key:String, seconds:Int):Float;
+	
+	public function expireAt(key:String, unixTime:Float):Float;
+	
+	public function pttl(key:String):Float;
+	
+	public function pexpire(key:String, milliseconds:Float):Float;
+	
+	public function pexpireAt(key:String, millisecondsTimestamp:Float):Float;
+	
 	// string
 
 	public function get(key:String):String;

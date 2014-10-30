@@ -32,6 +32,77 @@ class JedisWrapper implements Redishx {
 	// インスタンスメソッド /////////////////////////////////////////////////////////////
 	//                                                                Instance Methods //
 	/////////////////////////////////////////////////////////////////////////////////////
+	
+	/**
+	 * 
+	 * @param	key
+	 * @return
+	 */
+	public function persist(key:String):Float {
+		return cast(jedis.persist(key));
+	}
+	
+	/**
+	 * 
+	 * @param	key
+	 * @return
+	 */
+	public function ttl(key:String):Float {
+		return cast(jedis.ttl(key));
+	}
+	
+	/**
+	 * 
+	 * @param	key
+	 * @param	seconds
+	 * @return
+	 */
+	public function expire(key:String, seconds:Int):Float {
+		return cast(jedis.expire(key, seconds));
+	}
+	
+	/**
+	 * 
+	 * @param	key
+	 * @param	unixTime
+	 * @return
+	 */
+	public function expireAt(key:String, unixTime:Float):Float {
+		return cast(jedis.expireAt(key, cast(Long.valueOf("" + unixTime))));
+	}
+	
+	/**
+	 * 
+	 * @param	key
+	 * @return
+	 */
+	public function pttl(key:String):Float {
+		return cast(jedis.pttl(key));
+	}
+	
+	/**
+	 * 
+	 * @param	key
+	 * @param	milliseconds
+	 * @return
+	 */
+	public function pexpire(key:String, milliseconds:Float):Float {
+		return cast(jedis.pexpire(key, cast(Long.valueOf("" + milliseconds))));
+	}
+	
+	/**
+	 * 
+	 * @param	key
+	 * @param	millisecondsTimestamp
+	 * @return
+	 */
+	public function pexpireAt(key:String, millisecondsTimestamp:Float):Float {
+		return cast(jedis.pexpireAt(key, cast(Long.valueOf("" + millisecondsTimestamp))));
+	}
+
+	// インスタンスメソッド /////////////////////////////////////////////////////////////
+	//                                                                Instance Methods //
+	/////////////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * 
