@@ -17,7 +17,14 @@ class RedisHXUtil {
 	 */
 	public static function invokeMethod(pool:RedishxPool, target:Dynamic, method:String, args:Array<Dynamic>):Dynamic {
 		var redis:Redishx = pool.getResource();
-		args.push(redis);
+		var stored:Bool = false;
+		for (arg in args) {
+			if (Std.is(arg, RedisHXHolder)) {
+				arg.redis = redis;
+				stored = true;
+			}
+		}
+		if(!stored) { args.push(redis); }
 		
 		var result:Dynamic = null;
 		var ex:Dynamic = null;
